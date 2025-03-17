@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Support Ticket</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 40%;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #screenshotPreview {
+            max-width: 100%;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Industry X IMS Support Page</h2>
+        <form id="ticketForm">
+            <label for="ticketType">Select Ticket Type:</label>
+            <select id="ticketType">
+                <option value="">-- Select --</option>
+                <option value="incident">Incident</option>
+                <option value="service">Service Request</option>
+            </select>
+			
+			 <label for="appName">Airbus Program name:</label>
+            <select id="appName">
+                <option value="">-- Select Program name --</option>
+                <option value="SA">SA</option>
+                <option value="LR">LR</option>
+                <option value="A350">A350</option>
+                <option value="A380">A380</option>
+                <option value="A400M">A400M</option>
+				<option value="ATR">ATR</option>
+				<option value="Other Perimeter Applications">Other Perimeter Applications</option>
+            </select>
+
+            <label for="appName">Application Name:</label>
+            <select id="appName">
+                <option value="">-- Select Application --</option>
+                <option value="New Airbus ID Creation">New Airbus ID Creation</option>
+                <option value="Personal Mailbox">Personal Mailbox</option>
+                <option value="Windows Account">Windows Account</option>
+                <option value="Airbus Password reset">Airbus Password reset</option>
+                <option value="SAP Request">SAP Request</option>
+				<option value="3D Cockpit">3D Cockpit</option>
+				<option value="AIRINA">AIRINA</option>
+				<option value="Taksy">Taksy</option>
+            </select>
+
+            <div id="serviceRequestFields" class="hidden">
+				<label for="User Type">User Type:</label>
+                <input type="text" id="User Type" placeholder="Enter role">
+				
+                <label for="roleRequired">Role Required:</label>
+                <input type="text" id="roleRequired" placeholder="Enter role">
+
+                <label for="libraryRequired">Library Required:</label>
+                <input type="text" id="libraryRequired" placeholder="Enter library">
+            </div>
+
+            <label for="screenshot">Upload Screenshot (Optional):</label>
+            <input type="file" id="screenshot" accept="image/*">
+            <img id="screenshotPreview" src="#" alt="Screenshot Preview">
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("ticketType").addEventListener("change", function() {
+            let serviceFields = document.getElementById("serviceRequestFields");
+
+            if (this.value === "service") {
+                serviceFields.classList.remove("hidden");
+            } else {
+                serviceFields.classList.add("hidden");
+            }
+        });
+
+        document.getElementById("ticketForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents actual form submission
+            alert("Ticket submitted successfully!");
+        });
+
+        // Screenshot Upload Preview
+        document.getElementById("screenshot").addEventListener("change", function(event) {
+            let file = event.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    let imgPreview = document.getElementById("screenshotPreview");
+                    imgPreview.src = e.target.result;
+                    imgPreview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+</body>
+</html>
