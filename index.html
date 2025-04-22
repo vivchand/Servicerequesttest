@@ -55,9 +55,9 @@
         }
 
         textarea {
-            resize: vertical; /* Allow vertical resizing */
-            font-family: Arial, sans-serif; /* Consistent font */
-            rows: 3; /* Initial number of rows */
+            resize: vertical;
+            font-family: Arial, sans-serif;
+            rows: 3;
         }
 
         button {
@@ -123,11 +123,11 @@
 <body>
 
     <div class="container">
-        <h2>Industry X IMS Support Page</h2>
+        <h2>Industry X IMS Airbus Support Page</h2>
 
         <div class="introduction">
             <p>
-                This support page is intended for Industry X users to submit requests. For issues concerning Airbus business applications or services, please submit an incident through the <a href="https://support.accenture.com/support_portal?id=acn_service_catalog_dp&sys_id=c9856641139a6600380ddbf18144b05f" target="_blank">Accenture Incidents</a> portal.
+                This support page is intended for Industry X users to submit Airbus requests. For issues concerning Airbus business applications or services, please submit an incident through the <a href="https://support.accenture.com/support_portal?id=acn_service_catalog_dp&sys_id=c9856641139a6600380ddbf18144b05f" target="_blank">Accenture Incidents</a> portal.
             </p>
         </div>
 
@@ -137,10 +137,10 @@
             <input type="text" id="subject" placeholder="Enter Subject">
 
             <label for="description" class="required-label">Description:</label>
-            <textarea id="description" placeholder="Enter Description"></textarea>
+            <textarea id="description" placeholder="Enter Description" rows="3"></textarea>
 
-            <label for="applicationName">Application Name: <span class="app-name-note">(Fill out additional details if 'React Tool' is selected)</span></label>
-            <select id="applicationName">
+            <label for="applicationName" class="required-label">Application Name: <span class="app-name-note">(Fill out additional details if 'React Tool' is selected)</span></label>
+            <select id="applicationName" required>
                 <option value="">-- Select Application --</option>
                 <option value="New Airbus ID Creation">New Airbus ID Creation</option>
                 <option value="Personal Mailbox">Personal Mailbox</option>
@@ -150,9 +150,9 @@
 				<option value="Windows Account">Google Workspace</option>
                 <option value="Airbus Password reset">Airbus Password reset</option>
                 <option value="SAP Request">SAP Request</option>
-                <option value="3D Cockpit">SAP Password Reset</option>
+				<option value="Windows Account">SAP Password Reset</option>
+                <option value="3D Cockpit">Update Airbus Responsible</option>
                 <option value="AIRINA">AIRINA</option>
-                <option value="Taksy">Update Airbus Responsible</option>
                 <option value="Others">Others</option>
                 <option value="React Tool" class="highlighted-option">React Tool</option>
             
@@ -195,7 +195,7 @@
                 <option value="">-- Select Business Unit --</option>
                 <option value="Customer Services">Customer Services</option>
                 <option value="Engineering">Engineering</option>
-                <option value="ICT">ICT</option>
+                <option value="ICT">ICT</IT>
                 <option value="MAP">MAP</option>
                 <option value="Manufacturing">Manufacturing</option>
                 <option value="Quality">Quality</Quality>
