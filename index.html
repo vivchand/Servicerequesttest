@@ -44,7 +44,7 @@
             font-size: 1.2em;
         }
 
-        input, select, button {
+        input, select, textarea, button {
             width: 100%;
             padding: 8px;
             margin-top: 5px;
@@ -52,6 +52,12 @@
 
         select {
             background-color: #f5f5f5;
+        }
+
+        textarea {
+            resize: vertical; /* Allow vertical resizing */
+            font-family: Arial, sans-serif; /* Consistent font */
+            rows: 3; /* Initial number of rows */
         }
 
         button {
@@ -105,8 +111,12 @@
 
         .app-name-note {
             font-style: italic;
-            font-size: 0.9em; /* Slightly smaller to differentiate */
-            color: #555;      /* Darker grey for subtlety */
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .others-text-container {
+            display: none;
         }
     </style>
 </head>
@@ -127,7 +137,7 @@
             <input type="text" id="subject" placeholder="Enter Subject">
 
             <label for="description" class="required-label">Description:</label>
-            <input type="text" id="description" placeholder="Enter Description">
+            <textarea id="description" placeholder="Enter Description"></textarea>
 
             <label for="applicationName">Application Name: <span class="app-name-note">(Fill out additional details if 'React Tool' is selected)</span></label>
             <select id="applicationName">
@@ -135,14 +145,23 @@
                 <option value="New Airbus ID Creation">New Airbus ID Creation</option>
                 <option value="Personal Mailbox">Personal Mailbox</option>
                 <option value="Windows Account">Windows Account</option>
+				<option value="Windows Account">Nomad</option>
+				<option value="Windows Account">Personal/External Mailbox</option>
+				<option value="Windows Account">Google Workspace</option>
                 <option value="Airbus Password reset">Airbus Password reset</option>
                 <option value="SAP Request">SAP Request</option>
-                <option value="3D Cockpit">3D Cockpit</option>
+                <option value="3D Cockpit">SAP Password Reset</option>
                 <option value="AIRINA">AIRINA</option>
-                <option value="Taksy">Taksy</option>
+                <option value="Taksy">Update Airbus Responsible</option>
+                <option value="Others">Others</option>
                 <option value="React Tool" class="highlighted-option">React Tool</option>
             
             </select>
+
+            <div class="others-text-container">
+                <label for="otherAppName" class="required-label">Other Application Name:</label>
+                <input type="text" id="otherAppName" placeholder="Enter Application Name">
+            </div>
 
             <label for="reactToolName" class="react-tool-only required-label">React Tool name:</label>
             <input type="text" id="reactToolName" class="react-tool-only" placeholder="APS, VPM, Novodesk, etc." >
@@ -234,6 +253,7 @@
         const appNameLabel = document.querySelector('label[for="appName"]');
         const businessUnitLabel = document.querySelector('label[for="businessUnit"]');
         const reactToolNameLabel = document.querySelector('label[for="reactToolName"]');
+        const othersTextContainer = document.querySelector(".others-text-container");
 
         function toggleReactToolFields() {
             if (applicationNameSelect.value === "React Tool") {
@@ -241,11 +261,19 @@
                 appNameLabel.classList.add("required-label");
                 businessUnitLabel.classList.add("required-label");
                 reactToolNameLabel.classList.add("required-label");
+                othersTextContainer.style.display = "none";
+            } else if (applicationNameSelect.value === "Others") {
+                reactToolFields.forEach(field => field.style.display = "none");
+                appNameLabel.classList.remove("required-label");
+                businessUnitLabel.classList.remove("required-label");
+                reactToolNameLabel.classList.remove("required-label");
+                othersTextContainer.style.display = "block";
             } else {
                 reactToolFields.forEach(field => field.style.display = "none");
                 appNameLabel.classList.remove("required-label");
                 businessUnitLabel.classList.remove("required-label");
                 reactToolNameLabel.classList.remove("required-label");
+                othersTextContainer.style.display = "none";
             }
         }
 
