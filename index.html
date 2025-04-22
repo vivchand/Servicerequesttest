@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f0f8ff; /* Light blue for the entire page */
             margin: 0;
             padding: 0;
         }
@@ -38,8 +38,8 @@
             margin-top: 5px;
         }
 
-        .hidden {
-            display: none;
+        select {
+            background-color: #f5f5f5; /* Lighter grey for dropdowns */
         }
 
         button {
@@ -59,54 +59,120 @@
             margin-top: 10px;
             display: none;
         }
+
+        .react-tool-only {
+            display: none;
+        }
+
+        .highlighted-option {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        .introduction {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #e0e0e0; /* Very light grey border */
+            background: linear-gradient(to bottom right, #f8f8f8, #ffffff); /* Subtle gradient */
+        }
+
+        .introduction a { /* Style the link within the intro */
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        .introduction a:hover {
+            color: #0056b3;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h2>Industry X IMS Support Page</h2>
-        <form id="ticketForm">
-            <label for="ticketType">Select Ticket Type:</label>
-            <select id="ticketType">
-                <option value="">-- Select --</option>
-                <option value="incident">Incident</option>
-                <option value="service">Service Request</option>
-            </select>
-			
-			 <label for="appName">Airbus Program name:</label>
-            <select id="appName">
-                <option value="">-- Select Program name --</option>
-                <option value="SA">SA</option>
-                <option value="LR">LR</option>
-                <option value="A350">A350</option>
-                <option value="A380">A380</option>
-                <option value="A400M">A400M</option>
-				<option value="ATR">ATR</option>
-				<option value="Other Perimeter Applications">Other Perimeter Applications</option>
-            </select>
 
-            <label for="appName">Application Name:</label>
-            <select id="appName">
+        <div class="introduction">
+            <p>
+                This support page is intended for Industry X users to submit requests. For issues concerning Airbus business applications or services, please submit an incident through the <a href="https://support.accenture.com/support_portal?id=acn_service_catalog_dp&sys_id=c9856641139a6600380ddbf18144b05f" target="_blank">Accenture Incidents</a> portal.
+            </p>
+        </div>
+
+        <form id="ticketForm">
+            
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" placeholder="Enter Subject">
+
+            <label for="description">Description:</label>
+            <input type="text" id="description" placeholder="Enter Description">
+
+            <label for="applicationName">Application Name:</label>
+            <select id="applicationName">
                 <option value="">-- Select Application --</option>
                 <option value="New Airbus ID Creation">New Airbus ID Creation</option>
                 <option value="Personal Mailbox">Personal Mailbox</option>
                 <option value="Windows Account">Windows Account</option>
                 <option value="Airbus Password reset">Airbus Password reset</option>
                 <option value="SAP Request">SAP Request</option>
-				<option value="3D Cockpit">3D Cockpit</option>
-				<option value="AIRINA">AIRINA</option>
-				<option value="Taksy">Taksy</option>
+                <option value="3D Cockpit">3D Cockpit</option>
+                <option value="AIRINA">AIRINA</option>
+                <option value="Taksy">Taksy</option>
+                <option value="React Tool" class="highlighted-option">React Tool</option>
+            
             </select>
 
-            <div id="serviceRequestFields" class="hidden">
-				<label for="User Type">User Type:</label>
-                <input type="text" id="User Type" placeholder="Enter role">
-				
+            <label for="appName" class="react-tool-only">Airbus Program name:</label>
+            <select id="appName" class="react-tool-only" required>
+                <option value="">-- Select Program name --</option>
+                <option value="SA">SA</option>
+                <option value="LR">LR</option>
+                <option value="A350">A350</option>
+                <option value="A380">A380</option>
+                <option value="A400M">A400M</option>
+                <option value="ATR">ATR</option>
+                <option value="Other Perimeter Applications">Other Perimeter Applications</option>
+            </select>
+
+            <label for="appNameOptional" class="react-tool-only">Addtional Airbus Program name (Optional):</label>
+            <select id="appNameOptional" class="react-tool-only">
+                <option value="">-- Select Program name --</option>
+                <option value="SA">SA</option>
+                <option value="LR">LR</option>
+                <option value="A350">A350</option>
+                <option value="A380">A380</option>
+                <option value="A400M">A400M</option>
+                <option value="ATR">ATR</option>
+                <option value="Other Perimeter Applications">Other Perimeter Applications</option>
+            </select>
+
+            <label for="businessUnit" class="react-tool-only">Choose your Business Unit:</label>
+            <select id="businessUnit" class="react-tool-only">
+                <option value="">-- Select Business Unit --</option>
+                <option value="Customer Services">Customer Services</option>
+                <option value="Engineering">Engineering</option>
+                <option value="ICT">ICT</option>
+                <option value="MAP">MAP</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Quality">Quality</option>
+            </select>
+
+            <div id="serviceRequestFields" class="react-tool-only">
+                <label for="User Type">User Type:</label>
+                <input type="text" id="User Type" placeholder="Enter User Type">
+                
+                <label for="Access Type">Access Type:</label>
+                <input type="text" id="Access Type" placeholder="Enter Access Type">
+
+                <label for="Domain">Domain:</label>
+                <input type="text" id="Domain" placeholder="Enter Domain">
+
+                <label for="Module">Module:</label>
+                <input type="text" id="Module" placeholder="Enter Module">
+
                 <label for="roleRequired">Role Required:</label>
-                <input type="text" id="roleRequired" placeholder="Enter role">
+                <input type="text" id="roleRequired" placeholder="Enter Role Required">
 
                 <label for="libraryRequired">Library Required:</label>
-                <input type="text" id="libraryRequired" placeholder="Enter library">
+                <input type="text" id="libraryRequired" placeholder="Enter Library Required">
             </div>
 
             <label for="screenshot">Upload Screenshot (Optional):</label>
@@ -117,36 +183,41 @@
         </form>
     </div>
 
-    <script>
-        document.getElementById("ticketType").addEventListener("change", function() {
-            let serviceFields = document.getElementById("serviceRequestFields");
+            <script>
+                document.getElementById("ticketForm").addEventListener("submit", function(event) {
+                    event.preventDefault();
+                    alert("Ticket submitted successfully!");
+                });
 
-            if (this.value === "service") {
-                serviceFields.classList.remove("hidden");
-            } else {
-                serviceFields.classList.add("hidden");
-            }
-        });
+                document.getElementById("screenshot").addEventListener("change", function(event) {
+                    let file = event.target.files[0];
+                    if (file) {
+                        let reader = new FileReader();
+                        reader.onload = function(e) {
+                            let imgPreview = document.getElementById("screenshotPreview");
+                            imgPreview.src = e.target.result;
+                            imgPreview.style.display = "block";
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
 
-        document.getElementById("ticketForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevents actual form submission
-            alert("Ticket submitted successfully!");
-        });
+                const applicationNameSelect = document.getElementById("applicationName");
+                const reactToolFields = document.querySelectorAll(".react-tool-only");
 
-        // Screenshot Upload Preview
-        document.getElementById("screenshot").addEventListener("change", function(event) {
-            let file = event.target.files[0];
-            if (file) {
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    let imgPreview = document.getElementById("screenshotPreview");
-                    imgPreview.src = e.target.result;
-                    imgPreview.style.display = "block";
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
+                function toggleReactToolFields() {
+                    if (applicationNameSelect.value === "React Tool") {
+                        reactToolFields.forEach(field => field.style.display = "block");
+                    } else {
+                        reactToolFields.forEach(field => field.style.display = "none");
+                    }
+                }
 
-</body>
-</html>
+                applicationNameSelect.addEventListener("change", toggleReactToolFields);
+
+                // Initial call to set the correct display on page load
+                toggleReactToolFields();
+            </script>
+
+        </body>
+        </html>
