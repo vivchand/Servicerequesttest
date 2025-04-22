@@ -11,16 +11,16 @@
             background-color: #f0f8ff;
             margin: 0;
             padding: 0;
-            display: flex;             /* Use flexbox to control vertical alignment */
-            justify-content: center;    /* Center the container horizontally */
-            align-items: center;        /* Center the container vertically */
-            min-height: 100vh;         /* Ensure the body takes at least the full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .container {
-            width: 60%;               /* Increased width */
-            max-width: 800px;         /* Added max-width to prevent excessive stretching on very wide screens */
-            margin: 20px;             /* Reduced margin to allow more width, but keeps spacing */
+            width: 60%;
+            max-width: 800px;
+            margin: 20px;
             padding: 20px;
             background: white;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -35,6 +35,13 @@
             display: block;
             margin-top: 10px;
             font-weight: bold;
+        }
+
+        .required-label::before {
+            content: "* ";
+            color: red;
+            font-weight: bold;
+            font-size: 1.2em;
         }
 
         input, select, button {
@@ -79,12 +86,12 @@
             padding: 10px;
             border: 1px solid #e0e0e0;
             background: linear-gradient(to bottom right, #f8f8f8, #ffffff);
-            word-wrap: break-word;     /* Ensures long words don't break layout */
+            word-wrap: break-word;
         }
 
         .introduction p {
-            margin: 0;                /* Reset default paragraph margins */
-            line-height: 1.4;         /* Improve readability */
+            margin: 0;
+            line-height: 1.4;
         }
 
         .introduction a {
@@ -94,6 +101,12 @@
 
         .introduction a:hover {
             color: #0056b3;
+        }
+
+        .app-name-note {
+            font-style: italic;
+            font-size: 0.9em; /* Slightly smaller to differentiate */
+            color: #555;      /* Darker grey for subtlety */
         }
     </style>
 </head>
@@ -110,13 +123,13 @@
 
         <form id="ticketForm">
             
-            <label for="subject">Subject:</label>
+            <label for="subject" class="required-label">Subject:</label>
             <input type="text" id="subject" placeholder="Enter Subject">
 
-            <label for="description">Description:</label>
+            <label for="description" class="required-label">Description:</label>
             <input type="text" id="description" placeholder="Enter Description">
 
-            <label for="applicationName">Application Name:</label>
+            <label for="applicationName">Application Name: <span class="app-name-note">(Fill out additional details if 'React Tool' is selected)</span></label>
             <select id="applicationName">
                 <option value="">-- Select Application --</option>
                 <option value="New Airbus ID Creation">New Airbus ID Creation</option>
@@ -131,7 +144,10 @@
             
             </select>
 
-            <label for="appName" class="react-tool-only">Airbus Program name:</label>
+            <label for="reactToolName" class="react-tool-only required-label">React Tool name:</label>
+            <input type="text" id="reactToolName" class="react-tool-only" placeholder="APS, VPM, Novodesk, etc." >
+
+            <label for="appName" class="react-tool-only required-label">Airbus Program name:</label>
             <select id="appName" class="react-tool-only" required>
                 <option value="">-- Select Program name --</option>
                 <option value="SA">SA</option>
@@ -155,7 +171,7 @@
                 <option value="Other Perimeter Applications">Other Perimeter Applications</option>
             </select>
 
-            <label for="businessUnit" class="react-tool-only">Choose your Business Unit:</label>
+            <label for="businessUnit" class="react-tool-only required-label">Choose your Business Unit:</label>
             <select id="businessUnit" class="react-tool-only">
                 <option value="">-- Select Business Unit --</option>
                 <option value="Customer Services">Customer Services</option>
@@ -163,7 +179,7 @@
                 <option value="ICT">ICT</option>
                 <option value="MAP">MAP</option>
                 <option value="Manufacturing">Manufacturing</option>
-                <option value="Quality">Quality</option>
+                <option value="Quality">Quality</Quality>
             </select>
 
             <div id="serviceRequestFields" class="react-tool-only">
@@ -180,10 +196,10 @@
                 <input type="text" id="Module" placeholder="Enter Module">
 
                 <label for="roleRequired">Role Required:</label>
-                <input type="text" id="roleRequired" placeholder="Enter Role Required">
+                <input type="text" id="Role Required" placeholder="Enter Role Required">
 
                 <label for="libraryRequired">Library Required:</label>
-                <input type="text" id="libraryRequired" placeholder="Enter Library Required">
+                <input type="text" id="Library Required" placeholder="Enter Library Required">
             </div>
 
             <label for="screenshot">Upload Screenshot (Optional):</label>
@@ -215,12 +231,21 @@
 
         const applicationNameSelect = document.getElementById("applicationName");
         const reactToolFields = document.querySelectorAll(".react-tool-only");
+        const appNameLabel = document.querySelector('label[for="appName"]');
+        const businessUnitLabel = document.querySelector('label[for="businessUnit"]');
+        const reactToolNameLabel = document.querySelector('label[for="reactToolName"]');
 
         function toggleReactToolFields() {
             if (applicationNameSelect.value === "React Tool") {
                 reactToolFields.forEach(field => field.style.display = "block");
+                appNameLabel.classList.add("required-label");
+                businessUnitLabel.classList.add("required-label");
+                reactToolNameLabel.classList.add("required-label");
             } else {
                 reactToolFields.forEach(field => field.style.display = "none");
+                appNameLabel.classList.remove("required-label");
+                businessUnitLabel.classList.remove("required-label");
+                reactToolNameLabel.classList.remove("required-label");
             }
         }
 
