@@ -29,43 +29,57 @@
 
         h2 {
             text-align: center;
+            font-size: 1.1em;
         }
 
         label {
             display: block;
-            margin-top: 10px;
+            margin-top: 8px;
             font-weight: bold;
+            font-size: 0.95em;
         }
 
         .required-label::before {
             content: "* ";
             color: red;
             font-weight: bold;
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
 
         input, select, textarea, button {
+            width: 60%; /* Explicitly set width */
+            padding: 7px;
+            margin-top: 4px;
+            font-size: 0.9em;
+            display: block;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+
+        /* Subject and Description maintain full width */
+        #subject, #description {
             width: 100%;
             padding: 8px;
             margin-top: 5px;
-        }
-
-        select {
-            background-color: #f5f5f5;
+            font-size: 1em;
+            box-sizing: border-box;
         }
 
         textarea {
             resize: vertical;
             font-family: Arial, sans-serif;
             rows: 3;
+            box-sizing: border-box;
         }
 
         button {
             background-color: #007bff;
             color: white;
             border: none;
-            margin-top: 15px;
+            margin-top: 12px;
             cursor: pointer;
+            width: auto;
+            padding: 8px 15px;
+            display: inline-block;
         }
 
         button:hover {
@@ -73,7 +87,7 @@
         }
 
         #screenshotPreview {
-            max-width: 100%;
+            max-width: 90%;
             margin-top: 10px;
             display: none;
         }
@@ -88,11 +102,12 @@
         }
 
         .introduction {
-            margin-bottom: 20px;
-            padding: 10px;
+            margin-bottom: 18px;
+            padding: 9px;
             border: 1px solid #e0e0e0;
             background: linear-gradient(to bottom right, #f8f8f8, #ffffff);
             word-wrap: break-word;
+            font-size: 0.9em;
         }
 
         .introduction p {
@@ -111,7 +126,7 @@
 
         .app-name-note {
             font-style: italic;
-            font-size: 0.9em;
+            font-size: 0.85em;
             color: #555;
         }
 
@@ -132,7 +147,7 @@
         </div>
 
         <form id="ticketForm">
-            
+
             <label for="subject" class="required-label">Subject:</label>
             <input type="text" id="subject" placeholder="Enter Subject">
 
@@ -155,7 +170,7 @@
                 <option value="AIRINA">AIRINA</option>
                 <option value="Others">Others</option>
                 <option value="React Tool" class="highlighted-option">React Tool</option>
-            
+
             </select>
 
             <div class="others-text-container">
@@ -194,17 +209,17 @@
             <select id="businessUnit" class="react-tool-only">
                 <option value="">-- Select Business Unit --</option>
                 <option value="Customer Services">Customer Services</option>
-                <option value="Engineering">Engineering</option>
+                <option value="Engineering">Engineering</Engineering>
                 <option value="ICT">ICT</IT>
                 <option value="MAP">MAP</option>
-                <option value="Manufacturing">Manufacturing</option>
+                <option value="Manufacturing">Manufacturing</Manufacturing>
                 <option value="Quality">Quality</Quality>
             </select>
 
             <div id="serviceRequestFields" class="react-tool-only">
                 <label for="User Type">User Type:</label>
                 <input type="text" id="User Type" placeholder="Enter User Type">
-                
+
                 <label for="Access Type">Access Type:</label>
                 <input type="text" id="Access Type" placeholder="Enter Access Type">
 
