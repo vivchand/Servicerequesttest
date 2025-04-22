@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT Support Ticket</title>
-    
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff; /* Light blue for the entire page */
+            background-color: #f0f8ff;
             margin: 0;
             padding: 0;
+            display: flex;             /* Use flexbox to control vertical alignment */
+            justify-content: center;    /* Center the container horizontally */
+            align-items: center;        /* Center the container vertically */
+            min-height: 100vh;         /* Ensure the body takes at least the full viewport height */
         }
 
         .container {
-            width: 40%;
-            margin: 50px auto;
+            width: 60%;               /* Increased width */
+            max-width: 800px;         /* Added max-width to prevent excessive stretching on very wide screens */
+            margin: 20px;             /* Reduced margin to allow more width, but keeps spacing */
             padding: 20px;
             background: white;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -39,7 +44,7 @@
         }
 
         select {
-            background-color: #f5f5f5; /* Lighter grey for dropdowns */
+            background-color: #f5f5f5;
         }
 
         button {
@@ -72,11 +77,17 @@
         .introduction {
             margin-bottom: 20px;
             padding: 10px;
-            border: 1px solid #e0e0e0; /* Very light grey border */
-            background: linear-gradient(to bottom right, #f8f8f8, #ffffff); /* Subtle gradient */
+            border: 1px solid #e0e0e0;
+            background: linear-gradient(to bottom right, #f8f8f8, #ffffff);
+            word-wrap: break-word;     /* Ensures long words don't break layout */
         }
 
-        .introduction a { /* Style the link within the intro */
+        .introduction p {
+            margin: 0;                /* Reset default paragraph margins */
+            line-height: 1.4;         /* Improve readability */
+        }
+
+        .introduction a {
             color: #007bff;
             text-decoration: underline;
         }
@@ -91,14 +102,11 @@
     <div class="container">
         <h2>Industry X IMS Support Page</h2>
 
-       <div class="introduction">
-    <p>
-        This support page is intended for Industry X users to submit requests.
-    </p>
-    <p>
-        For issues concerning Airbus business applications or services, please submit an incident through the <a href="https://support.accenture.com/support_portal?id=acn_service_catalog_dp&sys_id=c9856641139a6600380ddbf18144b05f" target="_blank">Accenture Incidents</a> portal.
-    </p>
-</div>
+        <div class="introduction">
+            <p>
+                This support page is intended for Industry X users to submit requests. For issues concerning Airbus business applications or services, please submit an incident through the <a href="https://support.accenture.com/support_portal?id=acn_service_catalog_dp&sys_id=c9856641139a6600380ddbf18144b05f" target="_blank">Accenture Incidents</a> portal.
+            </p>
+        </div>
 
         <form id="ticketForm">
             
@@ -186,41 +194,41 @@
         </form>
     </div>
 
-            <script>
-                document.getElementById("ticketForm").addEventListener("submit", function(event) {
-                    event.preventDefault();
-                    alert("Ticket submitted successfully!");
-                });
+    <script>
+        document.getElementById("ticketForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Ticket submitted successfully!");
+        });
 
-                document.getElementById("screenshot").addEventListener("change", function(event) {
-                    let file = event.target.files[0];
-                    if (file) {
-                        let reader = new FileReader();
-                        reader.onload = function(e) {
-                            let imgPreview = document.getElementById("screenshotPreview");
-                            imgPreview.src = e.target.result;
-                            imgPreview.style.display = "block";
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                });
+        document.getElementById("screenshot").addEventListener("change", function(event) {
+            let file = event.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    let imgPreview = document.getElementById("screenshotPreview");
+                    imgPreview.src = e.target.result;
+                    imgPreview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
 
-                const applicationNameSelect = document.getElementById("applicationName");
-                const reactToolFields = document.querySelectorAll(".react-tool-only");
+        const applicationNameSelect = document.getElementById("applicationName");
+        const reactToolFields = document.querySelectorAll(".react-tool-only");
 
-                function toggleReactToolFields() {
-                    if (applicationNameSelect.value === "React Tool") {
-                        reactToolFields.forEach(field => field.style.display = "block");
-                    } else {
-                        reactToolFields.forEach(field => field.style.display = "none");
-                    }
-                }
+        function toggleReactToolFields() {
+            if (applicationNameSelect.value === "React Tool") {
+                reactToolFields.forEach(field => field.style.display = "block");
+            } else {
+                reactToolFields.forEach(field => field.style.display = "none");
+            }
+        }
 
-                applicationNameSelect.addEventListener("change", toggleReactToolFields);
+        applicationNameSelect.addEventListener("change", toggleReactToolFields);
 
-                // Initial call to set the correct display on page load
-                toggleReactToolFields();
-            </script>
+        // Initial call to set the correct display on page load
+        toggleReactToolFields();
+    </script>
 
-        </body>
-        </html>
+</body>
+</html>
